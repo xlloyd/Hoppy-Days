@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/JumpPad.tscn" type="PackedScene" id=9]
 
-[node name="Level1" type="Node2D" index="0"]
+[node name="Level1" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -178,10 +178,6 @@ frame = 2
 [node name="JumpPad" parent="JumpPads" index="0" instance=ExtResource( 9 )]
 
 position = Vector2( -3116, 338 )
-
-[node name="JumpPad2" parent="JumpPads" index="1" instance=ExtResource( 9 )]
-
-position = Vector2( -2912, 82 )
 
 [connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
 

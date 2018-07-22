@@ -60,10 +60,12 @@ func jump():
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		$JumpAudio.play()
 		motion.y = JUMP_SPEED
+		move_and_slide(motion, UP)
 
 
 func boost():
 	motion.y = JUMP_SPEED * JUMP_BOOST
+	move_and_slide(motion, UP)
 
 
 func restart():
@@ -77,6 +79,7 @@ func hurt():
 	$PainAudio.play()
 	can_be_hurt = false
 	$HurtTimer.start()
+	move_and_slide(motion, UP)
 
 
 func _on_HurtTimer_timeout():

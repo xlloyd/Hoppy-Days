@@ -1,18 +1,39 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/JumpPad.gd" type="Script" id=1]
-[ext_resource path="res://GFX/Items/spring.png" type="Texture" id=2]
+[ext_resource path="res://GFX/Items/spring_in.png" type="Texture" id=2]
+[ext_resource path="res://GFX/Items/spring.png" type="Texture" id=3]
+[ext_resource path="res://GFX/Items/spring_out.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Extended",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 72, 38 )
+extents = Vector2( 74, 55 )
 
-[node name="JumpPad" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id=3]
 
-input_pickable = false
+custom_solver_bias = 0.0
+extents = Vector2( 60, 20 )
+
+[node name="JumpPad" type="RigidBody2D" index="0"]
+
+input_pickable = true
 collision_layer = 2
-collision_mask = 3
+collision_mask = 2
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -20,8 +41,8 @@ bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 5
-contact_monitor = true
+contacts_reported = 0
+contact_monitor = false
 sleeping = false
 can_sleep = false
 linear_velocity = Vector2( 0, 0 )
@@ -29,15 +50,49 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable" ]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
-texture = ExtResource( 2 )
+frames = SubResource( 1 )
+animation = "Idle"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-shape = SubResource( 1 )
+visible = false
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
-[connection signal="body_entered" from="." to="." method="_on_JumpPad_body_entered"]
+[node name="JumpArea2D" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea2D" index="0"]
+
+visible = false
+position = Vector2( 0, -7 )
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
+
+[connection signal="body_entered" from="JumpArea2D" to="." method="_on_JumpArea2D_body_entered"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 
