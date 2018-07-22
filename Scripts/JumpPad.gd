@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends StaticBody2D
 
 var JumpPad_collision_shape_settings = [
 		{"animation_name": "Idle", "animation_frame": 0, "position":Vector2(0,27), "extents": Vector2(74,28)},
