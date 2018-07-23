@@ -30,7 +30,7 @@ func hurt():
 
 
 func end_game():
-	get_tree().change_scene("res://Scenes/GameOver.tscn")
+	get_tree().change_scene(Global.GameOver)
 
 
 func _on_Player_player_died():

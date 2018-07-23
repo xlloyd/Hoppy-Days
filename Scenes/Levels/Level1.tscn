@@ -1,0 +1,243 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/GameState.gd" type="Script" id=1]
+[ext_resource path="res://SFX/Chiptune_Adventures_1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/System/Camera2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Items/GirlFriend.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Enemies/SpikesTop.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Enemies/Spikeman.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Items/Coin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Items/JumpPad.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/System/PlatformTiles.tres" type="TileSet" id=10]
+[ext_resource path="res://SFX/Rise03.wav" type="AudioStream" id=11]
+
+[node name="Level1" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+starting_lives = 3
+coin_target = 3
+
+[node name="BGM" type="AudioStreamPlayer" parent="." index="0"]
+
+stream = ExtResource( 2 )
+volume_db = -20.0
+pitch_scale = 1.5
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[node name="Player" parent="." index="1" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+position = Vector2( 80.39, 843.856 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
+world_limit = 2500
+
+[node name="Camera2D" parent="Player" index="2" instance=ExtResource( 4 )]
+
+visible = false
+
+[node name="GirlFriend" parent="." index="2" instance=ExtResource( 5 )]
+
+position = Vector2( -6484.64, 220.149 )
+
+[node name="Spikes" type="Node2D" parent="." index="3"]
+
+editor/display_folded = true
+
+[node name="SpikesTop" parent="Spikes" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 552, 870 )
+
+[node name="SpikesTop2" parent="Spikes" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 1176, 614 )
+
+[node name="SpikesTop3" parent="Spikes" index="2" instance=ExtResource( 6 )]
+
+position = Vector2( 646, 422 )
+
+[node name="SpikesTop6" parent="Spikes" index="3" instance=ExtResource( 6 )]
+
+position = Vector2( -82, -410 )
+
+[node name="SpikesTop7" parent="Spikes" index="4" instance=ExtResource( 6 )]
+
+position = Vector2( -176, -410 )
+
+[node name="SpikesTop8" parent="Spikes" index="5" instance=ExtResource( 6 )]
+
+position = Vector2( -268, -410 )
+
+[node name="SpikesTop9" parent="Spikes" index="6" instance=ExtResource( 6 )]
+
+position = Vector2( -908, -410 )
+
+[node name="SpikesTop10" parent="Spikes" index="7" instance=ExtResource( 6 )]
+
+position = Vector2( -1284, -474 )
+
+[node name="SpikesTop12" parent="Spikes" index="8" instance=ExtResource( 6 )]
+
+position = Vector2( -1799.07, -1092.57 )
+rotation = 3.14159
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="SpikesTop13" parent="Spikes" index="9" instance=ExtResource( 6 )]
+
+position = Vector2( -2290, 358 )
+
+[node name="SpikesTop14" parent="Spikes" index="10" instance=ExtResource( 6 )]
+
+position = Vector2( -2384, 358 )
+
+[node name="SpikesTop15" parent="Spikes" index="11" instance=ExtResource( 6 )]
+
+position = Vector2( -2472, 358 )
+
+[node name="SpikesTop16" parent="Spikes" index="12" instance=ExtResource( 6 )]
+
+position = Vector2( -3348, 358 )
+
+[node name="SpikesTop17" parent="Spikes" index="13" instance=ExtResource( 6 )]
+
+position = Vector2( -3262, 358 )
+
+[node name="SpikesTop18" parent="Spikes" index="14" instance=ExtResource( 6 )]
+
+position = Vector2( -3596, 294 )
+
+[node name="Enemies" type="Node2D" parent="." index="4"]
+
+[node name="Spikeman" parent="Enemies" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 263.781, -469.374 )
+
+[node name="Spikeman2" parent="Enemies" index="1" instance=ExtResource( 7 )]
+
+position = Vector2( -570.751, -466.283 )
+
+[node name="Spikeman3" parent="Enemies" index="2" instance=ExtResource( 7 )]
+
+position = Vector2( -2166.69, -1421.79 )
+
+[node name="Spikeman4" parent="Enemies" index="3" instance=ExtResource( 7 )]
+
+position = Vector2( -5831.21, 1009.8 )
+
+[node name="Spikeman5" parent="Enemies" index="4" instance=ExtResource( 7 )]
+
+position = Vector2( 1664.22, -463.46 )
+
+[node name="Coins" type="Node2D" parent="." index="5"]
+
+editor/display_folded = true
+
+[node name="Coin2" parent="Coins" index="0" instance=ExtResource( 8 )]
+
+position = Vector2( 546, 698 )
+
+[node name="Coin8" parent="Coins" index="1" instance=ExtResource( 8 )]
+
+position = Vector2( 179.578, 46.5835 )
+
+[node name="Coin3" parent="Coins" index="2" instance=ExtResource( 8 )]
+
+position = Vector2( 1307, 338 )
+
+[node name="Coin4" parent="Coins" index="3" instance=ExtResource( 8 )]
+
+position = Vector2( 1534, -460 )
+
+[node name="Coin5" parent="Coins" index="4" instance=ExtResource( 8 )]
+
+position = Vector2( -2622, -1566 )
+
+[node name="Coin6" parent="Coins" index="5" instance=ExtResource( 8 )]
+
+position = Vector2( -2832, -1360 )
+frame = 3
+
+[node name="Coin7" parent="Coins" index="6" instance=ExtResource( 8 )]
+
+position = Vector2( -2884, -1008 )
+frame = 3
+
+[node name="Coin9" parent="Coins" index="7" instance=ExtResource( 8 )]
+
+position = Vector2( -2128.95, 59.8049 )
+frame = 3
+
+[node name="Coin10" parent="Coins" index="8" instance=ExtResource( 8 )]
+
+position = Vector2( -2012.36, 237.464 )
+frame = 3
+
+[node name="Coin11" parent="Coins" index="9" instance=ExtResource( 8 )]
+
+position = Vector2( -5795.02, -378.791 )
+frame = 3
+
+[node name="Coin12" parent="Coins" index="10" instance=ExtResource( 8 )]
+
+position = Vector2( -5656.22, -545.346 )
+frame = 3
+
+[node name="JumpPads" type="Node2D" parent="." index="6"]
+
+editor/display_folded = true
+
+[node name="JumpPad" parent="JumpPads" index="0" instance=ExtResource( 9 )]
+
+position = Vector2( 1309.86, 579.757 )
+
+[node name="JumpPad2" parent="JumpPads" index="1" instance=ExtResource( 9 )]
+
+position = Vector2( -1739.95, -758.237 )
+
+[node name="JumpPad3" parent="JumpPads" index="2" instance=ExtResource( 9 )]
+
+position = Vector2( -2006.44, 583.458 )
+
+[node name="JumpPad4" parent="JumpPads" index="3" instance=ExtResource( 9 )]
+
+position = Vector2( -6816.19, 651.931 )
+
+[node name="TileMap" type="TileMap" parent="." index="7"]
+
+mode = 0
+tile_set = ExtResource( 10 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 2
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -1310760, 5, 0, -1310754, 5, 0, -1179678, 7, 0, -655388, 7, 0, -524315, 5, 0, -393237, 7, 0, -393234, 7, 0, -327695, 5, 0, -327689, 5, 0, -327683, 5, 0, -393213, 4, 0, -393193, 4, 0, -196700, 3, 0, -131164, 3, 0, -65628, 3, 0, -93, 3, 0, 65442, 3, 0, 130979, 3, 0, 65546, 0, 0, 196512, 2, 0, 196515, 3, 0, 262051, 3, 0, 196611, 1, 0, 327586, 3, 0, 327587, 3, 0, 393114, 2, 0, 393123, 3, 0, 393130, 3, 0, 393139, 3, 0, 393146, 3, 0, 393152, 3, 0, 393157, 2, 0, 458659, 3, 0, 458699, 2, 0, 458705, 2, 0, 458711, 2, 0, 524193, 2, 0, 524195, 3, 0, 458759, 0, 0, 589730, 2, 0, 655265, 2, 0, 655268, 2, 0, 720800, 2, 0, 720805, 2, 0, 720863, 3, 0, 655375, 0, 0, 786325, 3, 0, 786445, 1, 0, 982955, 2, 0, 917510, 0, 0, 1048473, 2, 0, 983040, 0, 0, 1179554, 2, 0 )
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LifeUpPlayer" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 11 )
+volume_db = 20.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
+
+
