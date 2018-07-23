@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/GameState.gd" type="Script" id=1]
 [ext_resource path="res://SFX/Chiptune_Adventures_1.ogg" type="AudioStream" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://Scenes/GirlFriend.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/JumpPad.tscn" type="PackedScene" id=9]
+[ext_resource path="res://SFX/Rise03.wav" type="AudioStream" id=10]
 
-[node name="Level1" type="Node2D" index="0"]
+[node name="Level1" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -27,6 +28,8 @@ mix_target = 0
 bus = "Master"
 
 [node name="Spikes" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
 
 [node name="SpikesTop" parent="Spikes" index="0" instance=ExtResource( 3 )]
 
@@ -117,7 +120,7 @@ __meta__ = {
 [node name="Player" parent="." index="3" instance=ExtResource( 5 )]
 
 editor/display_folded = true
-position = Vector2( 86.8309, 854.407 )
+position = Vector2( 80.39, 843.856 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 world_limit = 2500
 
@@ -130,6 +133,8 @@ visible = false
 position = Vector2( -6484.64, 220.149 )
 
 [node name="Coins" type="Node2D" parent="." index="5"]
+
+editor/display_folded = true
 
 [node name="Coin2" parent="Coins" index="0" instance=ExtResource( 8 )]
 
@@ -203,6 +208,17 @@ position = Vector2( -2006.44, 583.458 )
 [node name="JumpPad4" parent="JumpPads" index="3" instance=ExtResource( 9 )]
 
 position = Vector2( -6816.19, 651.931 )
+
+[node name="LifeUpPlayer" type="AudioStreamPlayer2D" parent="." index="7"]
+
+stream = ExtResource( 10 )
+volume_db = 20.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
 

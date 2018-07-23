@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://GFX/Players/bunny1_stand.png" type="Texture" id=2]
 [ext_resource path="res://GFX/Players/bunny1_ready_fixed.png" type="Texture" id=3]
-[ext_resource path="res://GFX/Players/bunny1_hurt.png" type="Texture" id=4]
-[ext_resource path="res://GFX/Players/bunny1_jump.png" type="Texture" id=5]
-[ext_resource path="res://GFX/Players/bunny1_walk1.png" type="Texture" id=6]
-[ext_resource path="res://GFX/Players/bunny1_walk2.png" type="Texture" id=7]
+[ext_resource path="res://GFX/Players/bunny1_walk1.png" type="Texture" id=4]
+[ext_resource path="res://GFX/Players/bunny1_walk2.png" type="Texture" id=5]
+[ext_resource path="res://GFX/Players/bunny1_hurt.png" type="Texture" id=6]
+[ext_resource path="res://GFX/Players/bunny1_jump.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/PlayerAnimation.gd" type="Script" id=8]
 [ext_resource path="res://SFX/jump1.ogg" type="AudioStream" id=9]
 [ext_resource path="res://SFX/pain.ogg" type="AudioStream" id=10]
@@ -19,35 +19,23 @@ animations = [ {
 "name": "idle",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "run",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "run",
-"speed": 7.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-
-custom_solver_bias = 0.0
-radius = 58.5058
-height = 36.569
-
-[sub_resource type="CapsuleShape2D" id=3]
-
-custom_solver_bias = 0.0
-radius = 4.40637
-height = 64.5963
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 
 resource_name = "hurt_flash"
 length = 1.0
@@ -83,55 +71,46 @@ animation = "idle"
 script = ExtResource( 8 )
 _sections_unfolded = [ "Visibility" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
-visible = false
-position = Vector2( 0, 25 )
-shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="2"]
-
-visible = false
-position = Vector2( 0, 96.7411 )
-rotation = 1.5708
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/hurt_flash = SubResource( 4 )
+anims/hurt_flash = SubResource( 2 )
 blend_times = [  ]
 
-[node name="HurtTimer" type="Timer" parent="." index="4"]
+[node name="HurtTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="JumpAudio" type="AudioStreamPlayer" parent="." index="5"]
+[node name="JumpAudio" type="AudioStreamPlayer" parent="." index="3"]
 
 stream = ExtResource( 9 )
-volume_db = 0.0
+volume_db = -15.0
 pitch_scale = 1.5
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="PainAudio" type="AudioStreamPlayer" parent="." index="6"]
+[node name="PainAudio" type="AudioStreamPlayer" parent="." index="4"]
 
 stream = ExtResource( 10 )
-volume_db = 0.0
+volume_db = -20.0
 pitch_scale = 2.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+
+visible = false
+build_mode = 0
+polygon = PoolVector2Array( -0.594574, -52.0501, 27.2311, -43.7261, 42.2142, -29.6944, 53.8676, -9.00351, 59.5755, 10.0226, 60.5268, 39.2752, 52.4407, 59.2526, 51.965, 101.348, -50.7759, 101.11, -51.2516, 59.9661, -60.0511, 41.6535, -58.6242, 9.30911, -52.2029, -11.6196, -41.9763, -29.4566, -26.7555, -42.537 )
 
 [connection signal="timeout" from="HurtTimer" to="." method="_on_HurtTimer_timeout"]
 

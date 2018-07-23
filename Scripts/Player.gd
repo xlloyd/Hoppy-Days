@@ -65,7 +65,8 @@ func jump():
 
 func boost():
 	motion.y = JUMP_SPEED * JUMP_BOOST
-	move_and_slide(motion, UP)
+	var mot = Vector2(motion.x, JUMP_SPEED * JUMP_BOOST)
+	move_and_slide(mot, UP)
 
 
 func restart():

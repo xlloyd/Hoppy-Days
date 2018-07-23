@@ -97,7 +97,7 @@ _sections_unfolded = [ "Playback Options" ]
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
 
 stream = ExtResource( 8 )
-volume_db = 0.0
+volume_db = -15.0
 pitch_scale = 2.5
 autoplay = false
 mix_target = 0

@@ -5,9 +5,12 @@ export(int) var coin_target = 3
 
 var lives
 var coins = 0
+var life_up_repeat = 5
 
 func _ready():
 	Global.GameState = self
+	if OS.get_name() == "HTML5":
+		OS.set_window_maximized(true)
 	lives = starting_lives
 	update_GUI()
 
@@ -43,4 +46,17 @@ func coin_up():
 
 func life_up():
 	lives += 1
+	$LifeUpPlayer.play()
 	update_GUI()
+
+
+func screenshot():
+	# start screen capture
+	get_viewport().queue_screen_capture()
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	
+	# get screen capture
+	var capture = get_viewport().get_screen_capture()
+	# save to a file
+	capture.save_png("user://screenshot.png")
