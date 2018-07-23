@@ -1,6 +1,6 @@
 extends AnimatedSprite
 
-func update(motion):
+func update_animation(motion):
 	if motion.y < 0:
 		flip_h = false
 		play("jump")

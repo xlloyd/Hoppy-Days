@@ -57,10 +57,8 @@ tracks/1/keys = {
 }
 
 [node name="Coin" type="AnimatedSprite"]
-
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
 script = ExtResource( 7 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -68,7 +66,6 @@ __meta__ = {
 }
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
-
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -79,12 +76,10 @@ audio_bus_override = false
 audio_bus_name = "Master"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-
 visible = false
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
@@ -95,14 +90,12 @@ blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
-
 stream = ExtResource( 8 )
 volume_db = -15.0
 pitch_scale = 2.5
 autoplay = false
+stream_paused = false
 mix_target = 0
 bus = "Master"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-
-

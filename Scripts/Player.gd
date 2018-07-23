@@ -10,6 +10,8 @@ const JUMP_BOOST = 2
 
 var motion = Vector2()
 var can_be_hurt = true
+var boosting = false
+
 export var world_limit = 1250
 
 
@@ -34,12 +36,12 @@ func _process(delta):
 
 
 func update_animation(motion):
-	$AnimatedSprite.update(motion)
+	$AnimatedSprite.update_animation(motion)
 
 
 func fall(delta):
 	if is_on_floor() or is_on_ceiling():
-		motion.y = 0
+		motion.y = GRAVITY * delta
 	else:
 		motion.y += GRAVITY * delta
 	
@@ -60,7 +62,6 @@ func jump():
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		$JumpAudio.play()
 		motion.y = JUMP_SPEED
-		move_and_slide(motion, UP)
 
 
 func boost():
